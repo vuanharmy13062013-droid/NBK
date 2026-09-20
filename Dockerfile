@@ -2,6 +2,8 @@
 FROM node:22-alpine
 
 WORKDIR /app
+COPY package*.json ./
+RUN npm ci --omit=dev
 COPY . .
 
 # Dữ liệu ghi vào /app/data — gắn ổ đĩa bền vững ở đây nếu muốn giữ dữ liệu lâu dài.

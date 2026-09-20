@@ -18,6 +18,7 @@ import { addClient, broadcast } from './realtime.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PUBLIC_DIR = path.join(__dirname, '..', 'public');
 const PORT = Number(process.env.PORT || 3000);
+const HOST = process.env.HOST || '0.0.0.0';
 const ESCALATE_AFTER_SEC = Number(process.env.SOS_ESCALATE_SEC || 60);
 
 await load();
@@ -183,11 +184,11 @@ setInterval(() => {
 
 /* ------------------------------------------------------------------ */
 
-server.listen(PORT, () => {
+server.listen(PORT, HOST, () => {
   console.log('\n  ┌────────────────────────────────────────────────┐');
   console.log('  │  Nền tảng SOS – phòng chống bạo lực học đường  │');
   console.log('  └────────────────────────────────────────────────┘');
-  console.log(`  Máy chủ: http://localhost:${PORT}`);
+  console.log(`  Máy chủ: http://${HOST}:${PORT}`);
   console.log(`  Tài khoản demo: xem README.md (mật khẩu chung: Sos@2026)`);
   console.log(`  Mã OTP demo sẽ hiện trên màn hình đăng nhập và in ở đây.\n`);
 });
