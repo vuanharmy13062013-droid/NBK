@@ -1,0 +1,18 @@
+{
+  "name": "Nền tảng SOS",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:22",
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": {
+      "label": "Nền tảng SOS",
+      "onAutoForward": "openPreview"
+    }
+  },
+  "postCreateCommand": "npm install",
+  "postAttachCommand": "node server/index.js",
+  "customizations": {
+    "vscode": {
+      "extensions": ["dbaeumer.vscode-eslint"]
+    }
+  }
+}

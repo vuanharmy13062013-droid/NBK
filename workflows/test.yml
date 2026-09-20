@@ -1,0 +1,44 @@
+name: Kiểm thử hệ thống
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    name: Vẽ thử 14 màn hình của 5 vai trò
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "npm"
+
+      - name: Cài thư viện phục vụ kiểm thử
+        run: npm install
+
+      - name: Khởi động máy chủ
+        run: |
+          SOS_SECRET=ci-test node server/index.js &
+          for i in $(seq 1 20); do
+            curl -sf http://localhost:3000/api/meta > /dev/null && break
+            sleep 0.5
+          done
+
+      - name: Chạy kiểm thử giao diện
+        run: npm test
+
+      - name: Kiểm tra phân quyền
+        run: |
+          TOKEN=$(curl -s -X POST http://localhost:3000/api/auth/login \
+            -H 'Content-Type: application/json' \
+            -d '{"username":"hs.nguyenvana","password":"Sos@2026"}' \
+            | node -e "let d='';process.stdin.on('data',c=>d+=c).on('end',()=>console.log(JSON.parse(d).token))")
+          CODE=$(curl -s -o /dev/null -w '%{http_code}' http://localhost:3000/api/users -H "Authorization: Bearer $TOKEN")
+          echo "Học sinh gọi /api/users → HTTP $CODE"
+          test "$CODE" = "403"

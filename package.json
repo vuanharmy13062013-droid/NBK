@@ -1,0 +1,23 @@
+{
+  "name": "sos-platform",
+  "version": "1.0.0",
+  "description": "Nền tảng SOS Học Đường của trường THPT Nguyễn Bỉnh Khiêm - kết nối học sinh, giáo viên, Ban giám hiệu và trực ban trong phòng chống bạo lực học đường",
+  "type": "module",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "reset": "node server/reset.js",
+    "test": "node tools/smoke.mjs"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "pg": "^8.13.1"
+  },
+  "devDependencies": {
+    "jsdom": "^24.1.0"
+  },
+  "license": "MIT"
+}

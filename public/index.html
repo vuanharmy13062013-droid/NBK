@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SOS Học Đường · THPT Nguyễn Bỉnh Khiêm</title>
+<meta name="description" content="Nền tảng SOS Học Đường của trường THPT Nguyễn Bỉnh Khiêm: gửi báo cáo ẩn danh, cấp báo khẩn cấp tới trực ban và theo dõi xử lý vụ việc bạo lực học đường." />
+<meta name="theme-color" content="#16233B" />
+<link rel="icon" type="image/png" href="/assets/logo-nbk-96.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+<div id="app">
+  <header class="topbar">
+    <div class="topbar-main">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <img src="/assets/logo-nbk.jpg" alt="" width="42" height="42" />
+        </div>
+        <div class="brand-text">
+          <div class="name">Trường THPT Nguyễn Bỉnh Khiêm</div>
+          <div class="tag">SOS Học Đường · kết nối học sinh · giáo viên · trực ban</div>
+        </div>
+      </div>
+      <div class="top-right" id="topRight"></div>
+    </div>
+    <nav class="topbar-nav" id="topNav">
+      <button type="button" class="nav-link" id="navHome">Trang chủ</button>
+      <button type="button" class="nav-link" id="navAnon">Gửi báo cáo ẩn danh</button>
+      <button type="button" class="nav-link" id="navTrack">Tra cứu mã báo cáo</button>
+      <span class="nav-link nav-hotline">Trực ban 24/7</span>
+    </nav>
+  </header>
+
+  <main><div class="wrap" id="view"></div></main>
+
+  <div class="demo-strip" id="demoStrip" style="display:none;">
+    <span>Chuyển nhanh vai trò (dành cho buổi trình bày) —</span><b id="demoRoleLabel"></b>
+    <div class="roles" id="demoRoles"></div>
+  </div>
+  <div class="toast-wrap" id="toastWrap"></div>
+  <div id="modalRoot"></div>
+</div>
+
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>

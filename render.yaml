@@ -1,0 +1,25 @@
+# Cấu hình triển khai tự động cho Render (render.com) — gói miễn phí.
+# Sau khi đẩy mã lên GitHub: Render → New → Blueprint → chọn kho chứa này.
+services:
+  - type: web
+    name: sos-platform
+    runtime: node
+    plan: free
+    buildCommand: ""
+    startCommand: node server/index.js
+    healthCheckPath: /api/meta
+    envVars:
+      # Khóa ký token phiên: để Render tự sinh chuỗi ngẫu nhiên và giữ cố định.
+      - key: SOS_SECRET
+        generateValue: true
+      # Đặt 0 khi chạy thật để ẩn mã OTP và danh sách tài khoản mẫu.
+      - key: SOS_DEMO
+        value: "0"
+      - key: NODE_VERSION
+        value: "22"
+      # Chuỗi kết nối Postgres (Neon/Supabase...). Dán giá trị thật vào ô này
+      # trong Render Dashboard sau khi tạo database — KHÔNG commit giá trị thật
+      # vào git. Để trống thì hệ thống tự dùng file data/db.json cục bộ, nhưng
+      # sẽ mất dữ liệu mỗi khi dịch vụ free ngủ rồi khởi động lại.
+      - key: DATABASE_URL
+        sync: false
